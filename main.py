@@ -48,7 +48,7 @@ agent = create_tool_calling_agent(
 
 agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True)
 query = input("Enter your research topic: ")
-raw_response = agent_executor.invoke(query)
+raw_response = agent_executor.invoke({"query": query})
 
 try:
     structured_response = parser.parse(raw_response.get("output")[0]["text"])
